@@ -1,0 +1,168 @@
+Table UserAccount {
+  user_id int [pk]
+  username varchar [unique]
+  password_hash varchar
+  role varchar
+  enabled boolean
+  person_id int [unique, ref: > Person.person_id]
+}
+
+Table Person {
+  person_id int [pk]
+  first_name varchar
+  last_name varchar
+}
+
+Table ContactInformation {
+  contact_id int [pk]
+  email varchar
+  phone_number varchar
+  person_id int [unique, ref: > Person.person_id]
+}
+
+Table Student {
+  student_id int [pk]
+  person_id int [unique, ref: > Person.person_id]
+  index_number varchar
+  gpa decimal
+  study_program_id int [ref: > StudyProgram.study_program_id]
+  semester_id int [ref: > Semester.semester_id]
+}
+
+Table Mentor {
+  mentor_id int [pk]
+  person_id int [unique, ref: > Person.person_id]
+}
+
+Table UniversityMentor {
+  university_mentor_id int [pk]
+  mentor_id int [unique, ref: > Mentor.mentor_id]
+  faculty_id int [ref: > Faculty.faculty_id]
+}
+
+Table CompanyMentor {
+  company_mentor_id int [pk]
+  mentor_id int [unique, ref: > Mentor.mentor_id]
+  department_id int [ref: > CompanyDepartment.department_id]
+}
+
+Table Faculty {
+  faculty_id int [pk]
+  name varchar
+}
+
+Table StudyProgram {
+  study_program_id int [pk]
+  name varchar
+  faculty_id int [ref: > Faculty.faculty_id]
+}
+
+Table Semester {
+  semester_id int [pk]
+  name varchar
+  start_date date
+  end_date date
+}
+
+Table Skill {
+  skill_id int [pk]
+  name varchar
+}
+
+Table StudentSkill {
+  student_id int [ref: > Student.student_id]
+  skill_id int [ref: > Skill.skill_id]
+
+  indexes {
+    (student_id, skill_id) [pk]
+  }
+}
+
+Table Company {
+  company_id int [pk]
+  name varchar
+  address varchar
+  industry varchar
+}
+
+Table CompanyDepartment {
+  department_id int [pk]
+  name varchar
+  company_id int [ref: > Company.company_id]
+}
+
+Table CompanyLocation {
+  location_id int [pk]
+  city varchar
+  country varchar
+  company_id int [ref: > Company.company_id]
+}
+
+Table CompanyCollaboration {
+  company_id_1 int [ref: > Company.company_id]
+  company_id_2 int [ref: > Company.company_id]
+
+  indexes {
+    (company_id_1, company_id_2) [pk]
+  }
+}
+
+Table Internship {
+  internship_id int [pk]
+  title varchar
+  description text
+  duration_weeks int
+  company_id int [ref: > Company.company_id]
+  company_mentor_id int [ref: > CompanyMentor.company_mentor_id]
+  university_mentor_id int [ref: > UniversityMentor.university_mentor_id]
+}
+
+Table InternshipSkill {
+  internship_id int [ref: > Internship.internship_id]
+  skill_id int [ref: > Skill.skill_id]
+
+  indexes {
+    (internship_id, skill_id) [pk]
+  }
+}
+
+Table InternshipApplication {
+  application_id int [pk]
+  student_id int [ref: > Student.student_id]
+  internship_id int [ref: > Internship.internship_id]
+  status varchar
+  application_date date
+}
+
+Table ApplicationDocument {
+  application_document_id int [pk]
+  application_id int [ref: > InternshipApplication.application_id]
+  type varchar
+  file_path varchar
+  upload_date date
+}
+
+Table InternshipAssignment {
+  assignment_id int [pk]
+  student_id int [ref: > Student.student_id]
+  internship_id int [ref: > Internship.internship_id]
+  start_date date
+  end_date date
+  semester_id int [ref: > Semester.semester_id]
+}
+
+Table Document {
+  document_id int [pk]
+  assignment_id int [ref: > InternshipAssignment.assignment_id]
+  type varchar
+  file_path varchar
+  upload_date date
+}
+
+Table InternshipEvaluation {
+  evaluation_id int [pk]
+  assignment_id int [unique, ref: > InternshipAssignment.assignment_id]
+  grade int
+  feedback text
+  evaluation_date date
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Internship Management System</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fb;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #3f51b5;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .navbar .brand {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 500;
+        }
+
+        .container {
+            padding: 40px 60px;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #e8ebf9;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            color: #3f51b5;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f7f8fd;
+        }
+
+        tbody tr:hover {
+            background-color: #eef1ff;
+        }
+
+        td {
+            font-size: 15px;
+        }
+
+        .duration {
+            font-weight: 500;
+        }
+
+        .actions a {
+            padding: 8px 14px;
+            background-color: #3f51b5;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .actions a:hover {
+            background-color: #2f3fa3;
+        }
+
+        .spacer {
+            height: 40px;
+        }
+
+        .navbar .nav-link-button {
+            background: none;
+            border: none;
+            color: #fff;
+            margin-left: 24px;
+            font-weight: 500;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            padding: 0;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <h1>Current Internships</h1>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Duration</th>
+                <th sec:authorize="hasRole('STUDENT')"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="internship : ${internships}">
+                <td>
+                    <a sec:authorize="hasRole('COMPANY_MENTOR')"
+                       th:href="@{/company-mentor/internships/{id}/applications(id=${internship.id})}"
+                       th:text="${internship.title}"
+                       style="color:#3f51b5; font-weight:600; text-decoration:none;">
+                    </a>
+
+                    <span sec:authorize="hasRole('STUDENT')"
+                          th:text="${internship.title}">
+                    </span>
+                </td>
+                <td th:text="${internship.description}"></td>
+                <td class="duration">
+                    <span th:text="${internship.durationWeeks}"></span> weeks
+                </td>
+                <td sec:authorize="hasRole('STUDENT')" class="actions">
+                    <a th:href="@{/student/internships/{id}(id=${internship.id})}">
+                        APPLY
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="spacer"></div>
+</div>
+
+</body>
+</html>

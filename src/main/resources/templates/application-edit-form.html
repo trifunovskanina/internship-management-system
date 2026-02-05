@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Apply for Internship</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f7fb;
+      margin: 0;
+    }
+
+    .container {
+      padding: 40px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+    }
+
+    .navbar {
+      background-color: #3f51b5;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .navbar .brand {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 24px;
+      font-weight: 500;
+    }
+
+    .card {
+      background: white;
+      max-width: 500px;
+      margin: 5% auto auto auto;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    button {
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #2f3fa3;
+    }
+
+    .cancel {
+      text-decoration: none;
+      color: #666;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    select {
+      width: 100%;
+      padding: 5px;
+      margin: 10px 0;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 15px;
+      color: #333;
+      background-color: #fff;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+
+    .navbar .nav-link-button {
+      background: none;
+      border: none;
+      color: #fff;
+      margin-left: 24px;
+      font-weight: 500;
+      font-size: 16px;
+      font-family: inherit;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: none;
+    }
+  </style>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="card container">
+
+  <h2>Edit Application Status</h2>
+
+  <p>
+    <strong>Student:</strong>
+    <span th:text="${person.firstName}"></span>
+    <span th:text="${person.lastName}"></span>
+  </p>
+
+  <p>
+    <strong>Faculty:</strong>
+    <span th:text="${program.faculty.name}"/>
+  </p>
+
+  <p>
+    <strong>Study Program:</strong>
+    <span th:text="${program.name}"/>
+  </p>
+
+  <p>
+    <strong>Company:</strong>
+    <span th:text="${internship.company.name}"/>
+  </p>
+
+  <p>
+    <strong>Internship:</strong>
+    <span th:text="${internship.title}"></span>
+  </p>
+
+  <form th:action="@{/company-mentor/supervise/edit}"
+        th:object="${application}"
+        method="post">
+
+    <input type="hidden" name="applicationId" th:field="*{id}"/>
+
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <label><strong>Status</strong></label>
+    <select name="status">
+      <option th:each="status : ${statuses}"
+              th:value="${status.name()}"
+              th:text="${status.name()}"
+              th:selected="${status == application.status}">
+      </option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Save</button>
+    <a th:href="@{/company-mentor/supervise}">
+      Cancel
+    </a>
+  </form>
+
+</div>
+
+</body>
+</html>

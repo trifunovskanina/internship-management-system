@@ -1,0 +1,15 @@
+<div class="navbar" th:fragment="navbar">
+    <div class="brand">Internship Management System</div>
+    <div>
+        <a href="/profile">Profile</a>
+        <a sec:authorize="hasRole('STUDENT')" href="/student/internships">Internships</a>
+        <a sec:authorize="hasRole('COMPANY_MENTOR')" href="/company-mentor/internships">Internships</a>
+        <a sec:authorize="hasRole('ADMIN')" href="/admin/users">Users</a>
+        <a sec:authorize="hasRole('COMPANY_MENTOR')" href="/company-mentor/supervise">Current Mentoring</a>
+        <a sec:authorize="hasRole('STUDENT')" href="/student/applications">My Applications</a>
+
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="nav-link-button">Logout</button>
+        </form>
+    </div>
+</div>

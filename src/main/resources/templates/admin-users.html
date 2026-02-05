@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin – User Management</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fb;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #3f51b5;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .navbar .brand {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 500;
+        }
+
+        .container {
+            padding: 40px 60px;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #e8ebf9;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 600;
+            color: #3f51b5;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f7f8fd;
+        }
+
+        tbody tr:hover {
+            background-color: #eef1ff;
+        }
+
+        td {
+            font-size: 15px;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-ADMIN {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-MENTOR {
+            background-color: #ede7f6;
+            color: #5e35b1;
+        }
+
+        .badge-STUDENT {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-enabled {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .status-disabled {
+            color: #c62828;
+            font-weight: 600;
+        }
+
+        .actions form {
+            display: inline;
+        }
+
+        .actions button {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .btn-toggle {
+            background-color: #3f51b5;
+            color: white;
+        }
+
+        .btn-toggle:hover {
+            background-color: #2f3fa3;
+        }
+
+        .spacer {
+            height: 40px;
+        }
+
+        .role-form {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .role-select {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid #d0d7ff;
+            background-color: #eef2ff;
+            font-weight: 600;
+            font-size: 13px;
+            color: #3f51b5;
+            cursor: pointer;
+            min-width: 120px;
+        }
+
+        .role-select:focus {
+            outline: none;
+            border-color: #3f51b5;
+            background-color: #e8ebf9;
+        }
+
+        .btn-save {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            background-color: #3f51b5;
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .btn-save:hover {
+            background-color: #2f3fa3;
+        }
+
+        .navbar {
+            font-weight: 600;
+        }
+
+        .navbar .nav-link-button {
+            background: none;
+            border: none;
+            color: #fff;
+            margin-left: 24px;
+            font-weight: 500;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            padding: 0;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <h1>User Accounts</h1>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.person.firstName + ' ' + user.person.lastName}"></td>
+
+                <td class="actions">
+                    <form th:if="${user.role.name() != 'ADMIN'}"
+                          th:action="@{/admin/users/{id}/role(id=${user.id})}"
+                          class="role-form"
+                          method="post">
+
+                        <select name="role" class="role-select">
+                            <option th:each="role : ${roles}"
+                                    th:value="${role}"
+                                    th:text="${role.name()}"
+                                    th:selected="${role == user.role}">
+                            </option>
+                        </select>
+
+                        <button type="submit"
+                                class="btn-save"
+                                style="margin-left:8px;">
+                            Save
+                        </button>
+                    </form>
+
+                    <span th:if="${user.role.name() == 'ADMIN'}"
+                          class="badge badge-ADMIN">
+                        ADMIN
+                    </span>
+                </td>
+
+                <td>
+                    <span th:if="${user.enabled}" class="status status-enabled">ENABLED</span>
+                    <span th:if="${!user.enabled}" class="status status-disabled">DISABLED</span>
+                </td>
+
+                <td class="actions">
+                    <form th:if="${user.role.name() != 'ADMIN'}"
+                          th:action="@{/admin/users/{id}/toggle(id=${user.id})}"
+                          method="post">
+                        <button type="submit" class="btn-toggle">
+                            <span th:text="${user.enabled ? 'Disable' : 'Enable'}"></span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="spacer"></div>
+</div>
+
+</body>
+</html>
