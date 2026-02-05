@@ -35,6 +35,7 @@ The application validates the schema at startup and enforces business rules and 
 Authentication and authorization are handled using Spring Security with a custom UserDetailsService.
 
 The system enforces Role-Based Access Control (RBAC) at the controller and service layers.  
+
 Authorization is always enforced server-side and is never inferred from UI navigation alone.
 
 ---
