@@ -8,8 +8,6 @@ The system is built using Spring Boot, Spring Security, Thymeleaf, and PostgreSQ
 
 ## Architecture Overview
 
-This application follows a Spring architecture with role-based access control.
-
 The underlying database schema is designed and maintained separately in the [internship-management-database](https://github.com/trifunovskanina/internship-management-database) repository.
 
 The application validates the schema at startup and enforces business rules and access control on top of it.
