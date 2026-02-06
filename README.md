@@ -14,10 +14,6 @@ The underlying database schema is designed and maintained separately in the [int
 
 The application validates the schema at startup and enforces business rules and access control on top of it.
 
-## Database Model (Overview)
-
-![Logical Schema](database/diagrams/logical-schema.png)
-
 ---
 
 ## Technology Stack
