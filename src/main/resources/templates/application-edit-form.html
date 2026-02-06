@@ -74,7 +74,6 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 15px;
-      margin-top: 20px;
     }
 
     button:hover {
@@ -82,13 +81,9 @@
     }
 
     .cancel {
+      margin-left: 15px;
       text-decoration: none;
-      color: #666;
-      padding: 12px 24px;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: 500;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      color: #555;
     }
 
     select {
@@ -173,7 +168,7 @@
     <br><br>
 
     <button type="submit">Save</button>
-    <a th:href="@{/company-mentor/supervise}">
+    <a class="cancel" th:href="@{/company-mentor/supervise}">
       Cancel
     </a>
   </form>
