@@ -19,7 +19,7 @@ CREATE TABLE user_account (
     enabled BOOLEAN NOT NULL DEFAULT true,
     person_id INT NOT NULL UNIQUE,
 
-    CHECK (role IN ('ADMIN', 'COMPANY_MENTOR', 'STUDENT')),
+    CHECK (role IN ('ADMIN', 'UNIVERSITY_MENTOR', 'COMPANY_MENTOR', 'STUDENT')),
 
     PRIMARY KEY (id),
 
