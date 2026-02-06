@@ -7,6 +7,7 @@ import com.trifunovska.internship.service.InternshipService;
 import com.trifunovska.internship.service.CompanyMentorService;
 import com.trifunovska.internship.service.UserAccountService;
 import jakarta.transaction.Transactional;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,14 +35,27 @@ public class CompanyMentorController {
     private CompanyMentor getCurrentMentor(Authentication authentication) {
         String username = authentication.getName();
         UserAccount account = userAccountService.findByUsername(username);
-        return companyMentorService.findByPersonId(account.getPerson().getId());
+        CompanyMentor companyMentor = companyMentorService.findByPersonId(account.getPerson().getId());
+
+        if (companyMentor == null)
+            throw new IllegalStateException("Company mentor profile is missing");
+
+        return companyMentor;
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public String missingProfile() {
+        return "redirect:/profile/incomplete";
     }
 
     @GetMapping("/internships")
-    public String getInternshipsPage(Model model, Authentication authentication) {
+    public String getInternshipsPage(Model model,
+                                     Authentication authentication) {
+
         model.addAttribute("internships", internshipService.findAll());
 
         CompanyMentor companyMentor = getCurrentMentor(authentication);
+
         List<Internship> internships = internshipService
                 .findInternshipsSupervisedByCompanyMentor(companyMentor.getId());
 
@@ -56,6 +70,7 @@ public class CompanyMentorController {
                                            Model model) {
 
         CompanyMentor companyMentor = getCurrentMentor(authentication);
+
         List<Internship> internships = internshipService
                 .findInternshipsSupervisedByCompanyMentor(companyMentor.getId());
 
@@ -73,6 +88,7 @@ public class CompanyMentorController {
                                           Model model) {
 
         CompanyMentor companyMentor = getCurrentMentor(authentication);
+
         Internship internship = internshipService.findById(id);
 
         List<InternshipApplication> applications = internshipApplicationService
@@ -90,9 +106,16 @@ public class CompanyMentorController {
     @Transactional
     @GetMapping("/supervise/edit/{id}")
     public String editApplication(@PathVariable Integer id,
+                                  Authentication authentication,
                                   Model model) {
 
+        CompanyMentor companyMentor = getCurrentMentor(authentication);
+
         InternshipApplication application = internshipApplicationService.findById(id);
+
+        if (!internshipService.isMentoredBy(application.getInternship(), companyMentor))
+            throw new AccessDeniedException("You are not allowed to edit this application");
+
         Person person = application.getStudent().getPerson();
 
         Internship internship = internshipService
@@ -113,9 +136,15 @@ public class CompanyMentorController {
     @PostMapping("/supervise/edit")
     public String updateApplication(@RequestParam Integer id,
                                     @RequestParam String status,
+                                    Authentication authentication,
                                     Model model) {
 
+        CompanyMentor companyMentor = getCurrentMentor(authentication);
+
         InternshipApplication application = internshipApplicationService.findById(id);
+
+        if (!internshipService.isMentoredBy(application.getInternship(), companyMentor))
+            throw new AccessDeniedException("You are not allowed to edit this application");
 
         internshipApplicationService.updateStatus(id, ApplicationStatus.valueOf(status));
 

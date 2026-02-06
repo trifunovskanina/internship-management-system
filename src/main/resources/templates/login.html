@@ -8,7 +8,7 @@
 
     <style>
         body {
-            margin: auto;
+            margin: 0;
             font-family: 'Inter', sans-serif;
             color: #333;
             background-color: #f5f7fb;
@@ -31,6 +31,10 @@
             text-align: center;
         }
 
+        .form-group {
+            margin-bottom: 16px;
+        }
+
         label {
             font-weight: 600;
             display: block;
@@ -45,15 +49,35 @@
             border: 1px solid #ccc;
         }
 
-        button {
+        .form-control {
             width: 100%;
-            padding: 10px;
-            background-color: #3f51b5;
-            color: white;
-            border: none;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            font-size: 14px;
+            font-family: inherit;
             border-radius: 6px;
-            font-weight: 600;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            font-size: 14px;
+            font-family: inherit;
+            border-radius: 6px;
+            border: none;
             cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: #3f51b5;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #3546a8;
         }
 
         .error {
@@ -75,13 +99,17 @@
 
     <form th:action="@{/login}" method="post">
 
-        <label>Username</label>
-        <input type="text" name="username" required />
+        <div class="form-group">
+            <label>Username</label>
+            <input class="form-control" type="text" name="username" required/>
+        </div>
 
-        <label>Password</label>
-        <input type="password" name="password" required />
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="password" name="password" required/>
+        </div>
 
-        <button type="submit">Login</button>
+        <button class="btn btn-primary" type="submit">Login</button>
     </form>
 </div>
 

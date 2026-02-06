@@ -2,6 +2,7 @@ package com.trifunovska.internship.web;
 
 import com.trifunovska.internship.model.*;
 import com.trifunovska.internship.service.*;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,17 @@ public class StudentController {
     private Student getCurrentStudent(Authentication authentication) {
         String username = authentication.getName();
         UserAccount account = userAccountService.findByUsername(username);
-        return studentService.findByPersonId(account.getPerson().getId());
+
+        Student student = studentService.findByPersonId(account.getPerson().getId());
+        if (student == null)
+            throw new IllegalStateException("Student profile missing");
+
+        return student;
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public String missingProfile() {
+        return "redirect:/profile/incomplete";
     }
 
     @GetMapping("/internships")
@@ -45,12 +56,10 @@ public class StudentController {
                                      Model model) {
 
         Student student = getCurrentStudent(authentication);
-
         if (internshipApplicationService.hasApplied(student.getId(), id))
             return "redirect:/student/internships";
 
         Internship internship = internshipService.findById(id);
-
         model.addAttribute("internship", internship);
 
         return "internship-form";
@@ -66,26 +75,20 @@ public class StudentController {
 
         Student student = getCurrentStudent(authentication);
         Internship internship = internshipService.findById(id);
-
-        try {
-            internshipApplicationService.create(student, internship, cvFile, motivationFile);
-        } catch (Exception e) {
-            return "redirect:/student/applications";
-        }
+        internshipApplicationService.create(student, internship, cvFile, motivationFile);
 
         return "redirect:/student/applications";
     }
 
     @GetMapping("/applications")
-    public String viewApplications(Authentication authentication, Model model) {
+    public String viewApplications(Authentication authentication,
+                                   Model model) {
 
         Student student = getCurrentStudent(authentication);
-
         List<InternshipApplication> applications = internshipApplicationService
                 .findAllByStudent(student.getId());
 
         model.addAttribute("applications", applications);
-
         return "applications";
     }
 }

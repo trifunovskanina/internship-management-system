@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Incomplete</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fb;
+            color: #333;
+            margin: 0;
+        }
+
+        .container {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 32px;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .profile-header {
+            margin-bottom: 24px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 16px;
+        }
+
+        .profile-header h2 {
+            margin: 0;
+        }
+
+        .profile-header span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .message {
+            margin-top: 24px;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .warning-box {
+            margin-top: 24px;
+            padding: 16px;
+            border-radius: 8px;
+            background-color: #fff4e5;
+            border: 1px solid #ffe0b2;
+            color: #8a4b08;
+            font-size: 14px;
+        }
+
+        .actions {
+            margin-top: 32px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .navbar .nav-link-button {
+            background: none;
+            border: none;
+            color: #fff;
+            margin-left: 24px;
+            font-weight: 500;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .btn {
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: #3f51b5;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .btn .btn-primary {
+            border: none;
+        }
+
+        .navbar {
+            background-color: #3f51b5;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .navbar .brand {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 24px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="profile-card">
+
+        <div class="profile-header">
+            <h2>Profile Incomplete</h2>
+            <span>Account setup required</span>
+        </div>
+
+        <div class="message">
+            <p>
+                Your account is active, but the profile required for your current role
+                has not been fully set up.
+            </p>
+
+            <p>
+                This usually happens when your role was changed by an administrator or
+                when profile data has not yet been created.
+            </p>
+        </div>
+
+        <div class="warning-box">
+            You will not be able to access role-specific features until your profile
+            is completed.
+        </div>
+
+        <div class="actions">
+            <a href="/profile" class="btn btn-secondary">View Account</a>
+
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
