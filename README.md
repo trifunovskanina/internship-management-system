@@ -1,14 +1,14 @@
 # Internship Management System
 
-A full-stack Spring Boot application for managing internships, student applications, and role-based workflows in an academic–industry environment.
+A full-stack Spring Boot application for internship management, student applications, and role-based workflows in an academic–industry environment.
 
-The system is built using Spring Boot, Spring Security, Thymeleaf, and PostgreSQL, following a server-rendered architecture with strict role-based access control (RBAC).
+The system is built using Spring Boot, Spring Security, Thymeleaf, and PostgreSQL with strict role-based access control (RBAC).
 
 ---
 
 ## Architecture Overview
 
-This application follows a server-rendered Spring architecture with role-based access control.
+This application follows a Spring architecture with role-based access control.
 
 The underlying database schema is designed and maintained separately in the [internship-management-database](https://github.com/trifunovskanina/internship-management-database) repository.
 
