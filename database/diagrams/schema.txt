@@ -11,13 +11,13 @@ Table Person {
   person_id int [pk]
   first_name varchar
   last_name varchar
+  contact_id int [unique, ref: > ContactInformation.contact_id]
 }
 
 Table ContactInformation {
   contact_id int [pk]
   email varchar
   phone_number varchar
-  person_id int [unique, ref: > Person.person_id]
 }
 
 Table Student {
@@ -49,6 +49,7 @@ Table CompanyMentor {
 Table Faculty {
   faculty_id int [pk]
   name varchar
+  contact_id int [unique, ref: > ContactInformation.contact_id]
 }
 
 Table StudyProgram {
@@ -83,6 +84,7 @@ Table Company {
   name varchar
   address varchar
   industry varchar
+  contact_id int [unique, ref: > ContactInformation.contact_id]
 }
 
 Table CompanyDepartment {

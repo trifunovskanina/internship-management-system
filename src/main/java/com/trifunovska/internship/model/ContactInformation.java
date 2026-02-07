@@ -21,8 +21,4 @@ public class ContactInformation {
 
     @Column(name = "phone_number")
     private String phoneNumber;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "person_id", nullable = false, unique = true)
-    private Person person;
 }

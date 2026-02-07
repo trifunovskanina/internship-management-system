@@ -24,8 +24,60 @@ TRUNCATE TABLE
     user_account
 RESTART IDENTITY CASCADE;
 
-INSERT INTO faculty (name) VALUES
-('Faculty of Computer Science and Engineering');
+
+INSERT INTO contact_information (email) VALUES
+('nina.trifunovska@uni.edu'),        -- 1
+('marko.stojanov@uni.edu'),          -- 2
+('elena.ristova@uni.edu'),           -- 3
+('ivan.trajkovski@uni.edu'),         -- 4
+('ivan.kostov@techsoft.com'),        -- 5
+('elena.dimitrova@datacorp.com'),    -- 6
+('stefan.popov@cloudnine.com'),      -- 7
+('marija.ilieva@cloudnine.com'),     -- 8
+('petar.nikolov@secureit.com'),      -- 9
+('jovana.angelova@secureit.com'),    -- 10
+('petar.iliev@student.edu'),         -- 11
+('marija.nikolova@student.edu'),     -- 12
+('stefan.trajkov@student.edu'),      -- 13
+('ana.kolevska@student.edu'),        -- 14
+('filip.petkov@student.edu'),        -- 15
+('ivana.mitrevska@student.edu'),     -- 16
+('bojan.spasov@student.edu'),        -- 17
+('elena.georgieva@student.edu'),     -- 18
+('martin.dimitrov@student.edu'),     -- 19
+('sara.naceva@student.edu'),         -- 20
+('nikola.stankov@student.edu'),      -- 21
+('teodora.velkova@student.edu');     -- 22
+
+INSERT INTO person (first_name, last_name, contact_id) VALUES
+('Nina', 'Trifunovska', 1),
+('Marko', 'Stojanov', 2),
+('Elena', 'Ristova', 3),
+('Ivan', 'Trajkovski', 4),
+('Ivan', 'Kostov', 5),
+('Elena', 'Dimitrova', 6),
+('Stefan', 'Popov', 7),
+('Marija', 'Ilieva', 8),
+('Petar', 'Nikolov', 9),
+('Jovana', 'Angelova', 10),
+('Petar', 'Iliev', 11),
+('Marija', 'Nikolova', 12),
+('Stefan', 'Trajkov', 13),
+('Ana', 'Kolevska', 14),
+('Filip', 'Petkov', 15),
+('Ivana', 'Mitrevska', 16),
+('Bojan', 'Spasov', 17),
+('Elena', 'Georgieva', 18),
+('Martin', 'Dimitrov', 19),
+('Sara', 'Naceva', 20),
+('Nikola', 'Stankov', 21),
+('Teodora', 'Velkova', 22);
+
+INSERT INTO contact_information (email)
+VALUES ('fcse@uni.edu');
+
+INSERT INTO faculty (name, contact_id)
+VALUES ('Faculty of Computer Science and Engineering', 23);
 
 INSERT INTO study_program (name, faculty_id) VALUES
 ('Computer Science', 1),
@@ -35,30 +87,6 @@ INSERT INTO study_program (name, faculty_id) VALUES
 
 INSERT INTO semester (name, start_date, end_date) VALUES
 ('Summer 2024', '2024-06-01', '2024-09-15');
-
-INSERT INTO person (first_name, last_name) VALUES
-('Nina', 'Trifunovska'),
-('Marko', 'Stojanov'),
-('Elena', 'Ristova'),
-('Ivan', 'Trajkovski'),
-('Ivan', 'Kostov'),
-('Elena', 'Dimitrova'),
-('Stefan', 'Popov'),
-('Marija', 'Ilieva'),
-('Petar', 'Nikolov'),
-('Jovana', 'Angelova'),
-('Petar', 'Iliev'),  -- 11
-('Marija', 'Nikolova'),
-('Stefan', 'Trajkov'),
-('Ana', 'Kolevska'),
-('Filip', 'Petkov'),
-('Ivana', 'Mitrevska'),
-('Bojan', 'Spasov'),
-('Elena', 'Georgieva'),
-('Martin', 'Dimitrov'),
-('Sara', 'Naceva'),
-('Nikola', 'Stankov'),
-('Teodora', 'Velkova');
 
 
 INSERT INTO user_account (username, password_hash, role, person_id) VALUES
@@ -70,30 +98,6 @@ INSERT INTO user_account (username, password_hash, role, person_id) VALUES
 -- mentor: $2a$10$mrUTaBziSTwRZY19dYkvjeT4bEyHbfQ/MoXoWvJCPCcIcl1TAGKwq
 -- admin: $2a$10$bVOe4n0us0WnU7/Wddce8OP2BbxnSeZvVTXLglgPh1SVOj5byzODq
 
-
-INSERT INTO contact_information (email, person_id) VALUES
-('nina.trifunovska@uni.edu', 1),
-('marko.stojanov@uni.edu', 2),
-('elena.ristova@uni.edu', 3),
-('ivan.trajkovski@uni.edu', 4),
-('ivan.kostov@techsoft.com', 5),
-('elena.dimitrova@datacorp.com', 6),
-('stefan.popov@cloudnine.com', 7),
-('marija.ilieva@cloudnine.com', 8),
-('petar.nikolov@secureit.com', 9),
-('jovana.angelova@secureit.com', 10),
-('petar.iliev@student.edu', 11),
-('marija.nikolova@student.edu', 12),
-('stefan.trajkov@student.edu', 13),
-('ana.kolevska@student.edu', 14),
-('filip.petkov@student.edu', 15),
-('ivana.mitrevska@student.edu', 16),
-('bojan.spasov@student.edu', 17),
-('elena.georgieva@student.edu', 18),
-('martin.dimitrov@student.edu', 19),
-('sara.naceva@student.edu', 20),
-('nikola.stankov@student.edu', 21),
-('teodora.velkova@student.edu', 22);
 
 INSERT INTO student (person_id, index_number, gpa, study_program_id, semester_id) VALUES
 (11, '201001', 8.5, 1, 1),
@@ -115,11 +119,17 @@ INSERT INTO mentor (person_id) VALUES
 INSERT INTO university_mentor (mentor_id, faculty_id) VALUES
 (1,1),(2,1),(3,1),(4,1);
 
-INSERT INTO company (name, address, industry) VALUES
-('TechSoft', 'Skopje', 'Software'),
-('DataCorp', 'Bitola', 'Data Analytics'),
-('CloudNine', 'Ohrid', 'Cloud Services'),
-('SecureIT', 'Skopje', 'Cybersecurity');
+INSERT INTO contact_information (email) VALUES
+('contact@techsoft.com'),   -- 24
+('contact@datacorp.com'),   -- 25
+('contact@cloudnine.com'),  -- 26
+('contact@secureit.com');   -- 27
+
+INSERT INTO company (name, address, industry, contact_id) VALUES
+('TechSoft', 'Skopje', 'Software', 24),
+('DataCorp', 'Bitola', 'Data Analytics', 25),
+('CloudNine', 'Ohrid', 'Cloud Services', 26),
+('SecureIT', 'Skopje', 'Cybersecurity', 27);
 
 INSERT INTO company_department (name, company_id) VALUES
 ('Backend', 1),

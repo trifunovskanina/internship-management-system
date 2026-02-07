@@ -3,12 +3,23 @@ DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
 
+CREATE TABLE contact_information (
+    id SERIAL,
+    email TEXT NOT NULL,
+    phone_number TEXT,
+
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE person (
     id SERIAL,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
+    contact_id INT NOT NULL UNIQUE,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+
+    FOREIGN KEY (contact_id) REFERENCES contact_information(id)
 );
 
 CREATE TABLE user_account (
@@ -26,27 +37,14 @@ CREATE TABLE user_account (
     FOREIGN KEY (person_id) REFERENCES person(id)
 );
 
-CREATE TABLE contact_information (
-    id SERIAL,
-    email TEXT NOT NULL,
-    phone_number TEXT,
-    person_id INT NOT NULL,
-
-    -- one-to-one
-    UNIQUE (person_id),
-
-    PRIMARY KEY (id),
-
-    FOREIGN KEY (person_id) REFERENCES person(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
-
 CREATE TABLE faculty (
     id SERIAL,
     name TEXT NOT NULL UNIQUE,
+    contact_id INT NOT NULL UNIQUE,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+
+    FOREIGN KEY (contact_id) REFERENCES contact_information(id)
 );
 
 CREATE TABLE study_program (
@@ -112,8 +110,11 @@ CREATE TABLE company (
     name TEXT NOT NULL UNIQUE,
     address TEXT,
     industry TEXT,
+    contact_id INT NOT NULL UNIQUE,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+
+    FOREIGN KEY (contact_id) REFERENCES contact_information(id)
 );
 
 CREATE TABLE company_department (

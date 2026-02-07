@@ -22,6 +22,7 @@ public class Person {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(optional = false,  cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id", nullable = false, unique = true)
     private ContactInformation contactInformation;
 }

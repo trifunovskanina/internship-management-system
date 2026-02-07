@@ -168,7 +168,7 @@
     <br><br>
 
     <button type="submit">Save</button>
-    <a class="cancel" th:href="@{/company-mentor/supervise}">
+    <a class="cancel" th:href="@{/company-mentor/internships/{id}/applications(id=${internship.id})}">
       Cancel
     </a>
   </form>

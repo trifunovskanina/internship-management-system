@@ -22,4 +22,8 @@ public class Company {
     private String address;
 
     private String industry;
+
+    @OneToOne(optional = false,  cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id", nullable = false, unique = true)
+    private ContactInformation contactInformation;
 }

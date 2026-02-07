@@ -18,4 +18,8 @@ public class Faculty {
 
     @Column(nullable = false, unique = true)
     private String name;
+
+    @OneToOne(optional = false,  cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id", nullable = false, unique = true)
+    private ContactInformation contactInformation;
 }

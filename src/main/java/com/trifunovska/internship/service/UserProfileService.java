@@ -30,21 +30,23 @@ public class UserProfileService {
         if (person.getContactInformation() != null)
             dto.setEmail(person.getContactInformation().getEmail());
 
-        Student student = studentService.findByPersonId(person.getId());
-
-        if (account.getRole().equals(Role.STUDENT) && student != null) {
-            dto.setIndexNumber(student.getIndexNumber());
-            dto.setGpa(student.getGpa());
-            dto.setStudyProgram(student.getStudyProgram().getName());
-            dto.setFaculty(student.getStudyProgram().getFaculty().getName());
+        if (account.getRole().equals(Role.STUDENT)) {
+            Student student = studentService.findByPersonId(person.getId());
+            if (student != null) {
+                dto.setIndexNumber(student.getIndexNumber());
+                dto.setGpa(student.getGpa());
+                dto.setStudyProgram(student.getStudyProgram().getName());
+                dto.setFaculty(student.getStudyProgram().getFaculty().getName());
+            }
         }
 
-        CompanyMentor companyMentor = companyMentorService.findByPersonId(person.getId());
-
-        if (account.getRole().equals(Role.COMPANY_MENTOR) && companyMentor != null) {
-            dto.setCompany(companyMentorService.findCompany(companyMentor.getId()).getName());
-            dto.setDepartment(companyMentorService.findDepartment(companyMentor.getId()).getName());
-            dto.setOwningInternships(companyMentorService.countInternships(companyMentor.getId()));
+        if (account.getRole().equals(Role.COMPANY_MENTOR)) {
+            CompanyMentor companyMentor = companyMentorService.findByPersonId(person.getId());
+            if (companyMentor != null) {
+                dto.setCompany(companyMentorService.findCompany(companyMentor.getId()).getName());
+                dto.setDepartment(companyMentorService.findDepartment(companyMentor.getId()).getName());
+                dto.setOwningInternships(companyMentorService.countInternships(companyMentor.getId()));
+            }
         }
 
         return dto;

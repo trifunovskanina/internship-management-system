@@ -1,5 +1,3 @@
--- Dynamic data generation for performance analysis
-
 -- Remove all data for rerun
 TRUNCATE TABLE
     internship_evaluation,
@@ -9,35 +7,50 @@ TRUNCATE TABLE
     student_skill,
     student,
     person,
-    contact_information
+    contact_information,
+	study_program
 RESTART IDENTITY CASCADE;
 
--- Inserting 20 001 students
-INSERT INTO person (first_name, last_name)
+
+INSERT INTO contact_information (email)
+VALUES ('fcse@uni.edu');
+
+INSERT INTO faculty (name, contact_id)
+VALUES ('Faculty of Computer Science and Engineering', 1);
+
+INSERT INTO study_program (name, faculty_id) VALUES
+('Computer Science', 1),
+('Software Engineering and Information Systems', 1),
+('Internet Networks and Security', 1),
+('Applied Information Technologies', 1);
+
+INSERT INTO semester (name, start_date, end_date)
+VALUES ('Summer 2024', '2024-06-01', '2024-09-15');
+
+
+INSERT INTO contact_information (email)
+SELECT 'student' || gs || '@student.edu'
+FROM generate_series(1, 20000) gs;
+
+
+INSERT INTO person (first_name, last_name, contact_id)
 SELECT
     'Name' || gs,
-    'Surname' || gs
-FROM generate_series(1000, 21000) AS gs;  -- integers 1000 to 21000
-
-
-INSERT INTO contact_information (email, person_id)
-SELECT
-    'student' || gs || '@student.edu',
-    gs - 999
-FROM generate_series(1000, 21000) AS gs;
+    'Surname' || gs,
+    gs + 1
+FROM generate_series(1, 20000) AS gs;  -- integers 1 to 20000
 
 
 INSERT INTO student (person_id, index_number, gpa, study_program_id, semester_id)
 SELECT
-    gs - 999,
+    gs,
     'IDX' || gs,
     ROUND((random() * 4 + 6)::numeric, 2),  -- gpa 6.0 to 10.0
     (floor(random() * 4) + 1)::int,  -- study program 1 to 4
     1
-FROM generate_series(1000, 21000) AS gs;
+FROM generate_series(1, 20000) AS gs;
 
 
--- Inserting 80 000 applications
 INSERT INTO internship_application (student_id, internship_id, status)
 SELECT DISTINCT ON (s.id, i.id)
     s.id,
@@ -52,7 +65,7 @@ CROSS JOIN internship i
 ORDER BY s.id, i.id, random()
 LIMIT 80000;
 
--- Inserting 5000 assignments
+
 INSERT INTO internship_assignment (student_id, internship_id, start_date, end_date, semester_id)
 SELECT DISTINCT ON (ia.student_id, ia.internship_id)
     ia.student_id,
@@ -65,7 +78,7 @@ WHERE ia.status = 'ACCEPTED'
 ORDER BY ia.student_id, ia.internship_id
 LIMIT 5000;
 
--- Inserting evaluations
+
 INSERT INTO internship_evaluation (assignment_id, grade, feedback, evaluation_date)
 SELECT
     id,
@@ -75,7 +88,7 @@ SELECT
 FROM internship_assignment
 WHERE random() < 0.7;
 
--- Inserting 5 documents per assignment
+
 INSERT INTO document (assignment_id, document_type, file_path)
 SELECT ia.id,
     CASE
