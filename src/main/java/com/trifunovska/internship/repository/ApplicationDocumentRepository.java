@@ -14,10 +14,9 @@ public interface ApplicationDocumentRepository extends JpaRepository<Application
     @Query(nativeQuery = true,
             value = """
                     SELECT ad.*
-                    FROM application_document AS ad
-                    JOIN internship_application AS ia ON ad.application_id = ia.id
-                    WHERE ia.id = :application_id
-      """)
+                    FROM application_document 
+		            WHERE application_id = :application_id
+    """)
     List<ApplicationDocument> findByApplicationId(@Param("application_id") Integer applicationId);
 
 }
