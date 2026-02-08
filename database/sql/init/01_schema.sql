@@ -206,7 +206,6 @@ CREATE TABLE internship_skill (
     FOREIGN KEY (skill_id) REFERENCES skill(id)
 );
 
-
 CREATE TABLE internship_application (
     id SERIAL,
     student_id INT NOT NULL,

@@ -26,28 +26,28 @@ RESTART IDENTITY CASCADE;
 
 
 INSERT INTO contact_information (email) VALUES
-('nina.trifunovska@uni.edu'),        -- 1
-('marko.stojanov@uni.edu'),          -- 2
-('elena.ristova@uni.edu'),           -- 3
-('ivan.trajkovski@uni.edu'),         -- 4
-('ivan.kostov@techsoft.com'),        -- 5
-('elena.dimitrova@datacorp.com'),    -- 6
-('stefan.popov@cloudnine.com'),      -- 7
-('marija.ilieva@cloudnine.com'),     -- 8
-('petar.nikolov@secureit.com'),      -- 9
-('jovana.angelova@secureit.com'),    -- 10
-('petar.iliev@student.edu'),         -- 11
-('marija.nikolova@student.edu'),     -- 12
-('stefan.trajkov@student.edu'),      -- 13
-('ana.kolevska@student.edu'),        -- 14
-('filip.petkov@student.edu'),        -- 15
-('ivana.mitrevska@student.edu'),     -- 16
-('bojan.spasov@student.edu'),        -- 17
-('elena.georgieva@student.edu'),     -- 18
-('martin.dimitrov@student.edu'),     -- 19
-('sara.naceva@student.edu'),         -- 20
-('nikola.stankov@student.edu'),      -- 21
-('teodora.velkova@student.edu');     -- 22
+('nina.trifunovska@uni.edu'),
+('marko.stojanov@uni.edu'),          
+('elena.ristova@uni.edu'),           
+('ivan.trajkovski@uni.edu'),         
+('ivan.kostov@techsoft.com'),        
+('elena.dimitrova@datacorp.com'),    
+('stefan.popov@cloudnine.com'),      
+('marija.ilieva@cloudnine.com'),     
+('petar.nikolov@secureit.com'),      
+('jovana.angelova@secureit.com'),    
+('petar.iliev@student.edu'),         
+('marija.nikolova@student.edu'),     
+('stefan.trajkov@student.edu'),      
+('ana.kolevska@student.edu'),        
+('filip.petkov@student.edu'),        
+('ivana.mitrevska@student.edu'),     
+('bojan.spasov@student.edu'),        
+('elena.georgieva@student.edu'),     
+('martin.dimitrov@student.edu'),     
+('sara.naceva@student.edu'),         
+('nikola.stankov@student.edu'),      
+('teodora.velkova@student.edu');     
 
 INSERT INTO person (first_name, last_name, contact_id) VALUES
 ('Nina', 'Trifunovska', 1),
@@ -120,10 +120,10 @@ INSERT INTO university_mentor (mentor_id, faculty_id) VALUES
 (1,1),(2,1),(3,1),(4,1);
 
 INSERT INTO contact_information (email) VALUES
-('contact@techsoft.com'),   -- 24
-('contact@datacorp.com'),   -- 25
-('contact@cloudnine.com'),  -- 26
-('contact@secureit.com');   -- 27
+('contact@techsoft.com'),   
+('contact@datacorp.com'),   
+('contact@cloudnine.com'),  
+('contact@secureit.com');   
 
 INSERT INTO company (name, address, industry, contact_id) VALUES
 ('TechSoft', 'Skopje', 'Software', 24),
@@ -170,40 +170,28 @@ INSERT INTO internship_application (student_id, internship_id, status) VALUES
 INSERT INTO application_document (application_id, type, file_path) VALUES
 (1, 'CV', 'CV_Petar_Iliev.pdf'),
 (1, 'MOTIVATION', 'Motivation_Petar_Iliev.pdf'),
-
 (2, 'CV', 'CV_Marija_Nikolova.pdf'),
 (2, 'MOTIVATION', 'Motivation_Marija_Nikolova.pdf'),
-
 (3, 'CV', 'CV_Stefan_Trajkov.pdf'),
 (3, 'MOTIVATION', 'Motivation_Stefan_Trajkov.pdf'),
-
 (4, 'CV', 'CV_Ana_Kolevska.pdf'),
 (4, 'MOTIVATION', 'Motivation_Ana_Kolevska.pdf'),
-
 (5, 'CV', 'CV_Filip_Petkov.pdf'),
 (5, 'MOTIVATION', 'Motivation_Filip_Petkov.pdf'),
-
 (6, 'CV', 'CV_Ivana_Mitrevska.pdf'),
 (6, 'MOTIVATION', 'Motivation_Ivana_Mitrevska.pdf'),
-
 (7, 'CV', 'CV_Bojan_Spasov.pdf'),
 (7, 'MOTIVATION', 'Motivation_Bojan_Spasov.pdf'),
-
 (8, 'CV', 'CV_Elena_Georgieva.pdf'),
 (8, 'MOTIVATION', 'Motivation_Elena_Georgieva.pdf'),
-
 (9, 'CV', 'CV_Martin_Dimitrov.pdf'),
 (9, 'MOTIVATION', 'Motivation_Martin_Dimitrov.pdf'),
-
 (10, 'CV', 'CV_Sara_Naceva.pdf'),
 (10, 'MOTIVATION', 'Motivation_Sara_Naceva.pdf'),
-
 (11, 'CV', 'CV_Nikola_Stankov.pdf'),
 (11, 'MOTIVATION', 'Motivation_Nikola_Stankov.pdf'),
-
 (12, 'CV', 'CV_Teodora_Velkova.pdf'),
 (12, 'MOTIVATION', 'Motivation_Teodora_Velkova.pdf');
-
 
 INSERT INTO skill (name) VALUES
 ('SQL'), ('Java'), ('Spring'), ('React'), ('Machine Learning');
