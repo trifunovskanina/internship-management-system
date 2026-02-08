@@ -124,11 +124,7 @@ public class CompanyMentorController {
 
         List<ApplicationDocument> documents = applicationDocumentService
                 .findByApplicationId(application.getId());
-
-
-        System.out.println(application.getId());
-        System.out.println(documents.size());
-
+        
         model.addAttribute("application", application);
         model.addAttribute("internship", internship);
         model.addAttribute("statuses", ApplicationStatus.values());

@@ -40,7 +40,6 @@ public class InternshipApplicationService {
         applicationDocumentService.create(application, motivationFile, FileType.MOTIVATION);
 
         // TODO: Store files on disk
-
     }
 
     public void updateStatus(Integer applicationId, ApplicationStatus status) {

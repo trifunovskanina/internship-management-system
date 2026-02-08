@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Service
 public class UserProfileService {
-
     private final StudentService studentService;
     private final CompanyMentorService companyMentorService;
 
