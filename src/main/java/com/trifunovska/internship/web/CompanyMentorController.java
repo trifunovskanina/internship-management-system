@@ -2,10 +2,7 @@ package com.trifunovska.internship.web;
 
 import com.trifunovska.internship.model.*;
 import com.trifunovska.internship.model.enums.ApplicationStatus;
-import com.trifunovska.internship.service.InternshipApplicationService;
-import com.trifunovska.internship.service.InternshipService;
-import com.trifunovska.internship.service.CompanyMentorService;
-import com.trifunovska.internship.service.UserAccountService;
+import com.trifunovska.internship.service.*;
 import jakarta.transaction.Transactional;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,12 +21,14 @@ public class CompanyMentorController {
     private final UserAccountService userAccountService;
     private final CompanyMentorService companyMentorService;
     private final InternshipApplicationService internshipApplicationService;
+    private final ApplicationDocumentService applicationDocumentService;
 
-    public CompanyMentorController(InternshipService internshipService, UserAccountService userAccountService, CompanyMentorService companyMentorService, InternshipApplicationService internshipApplicationService) {
+    public CompanyMentorController(InternshipService internshipService, UserAccountService userAccountService, CompanyMentorService companyMentorService, InternshipApplicationService internshipApplicationService, ApplicationDocumentService applicationDocumentService) {
         this.internshipService = internshipService;
         this.userAccountService = userAccountService;
         this.companyMentorService = companyMentorService;
         this.internshipApplicationService = internshipApplicationService;
+        this.applicationDocumentService = applicationDocumentService;
     }
 
     private CompanyMentor getCurrentMentor(Authentication authentication) {
@@ -123,11 +122,19 @@ public class CompanyMentorController {
 
         StudyProgram program = application.getStudent().getStudyProgram();
 
+        List<ApplicationDocument> documents = applicationDocumentService
+                .findByApplicationId(application.getId());
+
+
+        System.out.println(application.getId());
+        System.out.println(documents.size());
+
         model.addAttribute("application", application);
         model.addAttribute("internship", internship);
         model.addAttribute("statuses", ApplicationStatus.values());
         model.addAttribute("person", person);
         model.addAttribute("program", program);
+        model.addAttribute("documents", documents);
 
         return "application-edit-form";
     }

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
@@ -22,7 +22,7 @@ public class SecurityConfig {
                         .requestMatchers("/", "/login", "/assets/**").permitAll()
                         .requestMatchers("/style.css", "/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/mentor/**").hasRole("COMPANY_MENTOR")
+                        .requestMatchers("/company-mentor/**").hasRole("COMPANY_MENTOR")
                         .requestMatchers("/student/**").hasRole("STUDENT")
                         .anyRequest().authenticated()
                 )

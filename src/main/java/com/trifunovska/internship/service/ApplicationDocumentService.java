@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 public class ApplicationDocumentService {
     private final ApplicationDocumentRepository applicationDocumentRepository;
@@ -32,5 +34,9 @@ public class ApplicationDocumentService {
         document.setFilePath(path);
 
         applicationDocumentRepository.save(document);
+    }
+
+    public List<ApplicationDocument> findByApplicationId(Integer applicationId) {
+        return applicationDocumentRepository.findByApplicationId(applicationId);
     }
 }

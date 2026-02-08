@@ -154,7 +154,7 @@ INSERT INTO internship (title, description, duration_weeks, company_id, company_
 ('Penetration Testing Intern', 'Ethical hacking basics', 12, 4, 6, 4);
 
 INSERT INTO internship_application (student_id, internship_id, status) VALUES
-(1, 1, 'PENDING'),
+(1, 3, 'PENDING'),
 (2, 1, 'ACCEPTED'),
 (3, 1, 'REJECTED'),
 (4, 2, 'ACCEPTED'),
@@ -166,6 +166,44 @@ INSERT INTO internship_application (student_id, internship_id, status) VALUES
 (10, 5, 'ACCEPTED'),
 (11, 5, 'REJECTED'),
 (12, 6, 'ACCEPTED');
+
+INSERT INTO application_document (application_id, type, file_path) VALUES
+(1, 'CV', 'CV_Petar_Iliev.pdf'),
+(1, 'MOTIVATION', 'Motivation_Petar_Iliev.pdf'),
+
+(2, 'CV', 'CV_Marija_Nikolova.pdf'),
+(2, 'MOTIVATION', 'Motivation_Marija_Nikolova.pdf'),
+
+(3, 'CV', 'CV_Stefan_Trajkov.pdf'),
+(3, 'MOTIVATION', 'Motivation_Stefan_Trajkov.pdf'),
+
+(4, 'CV', 'CV_Ana_Kolevska.pdf'),
+(4, 'MOTIVATION', 'Motivation_Ana_Kolevska.pdf'),
+
+(5, 'CV', 'CV_Filip_Petkov.pdf'),
+(5, 'MOTIVATION', 'Motivation_Filip_Petkov.pdf'),
+
+(6, 'CV', 'CV_Ivana_Mitrevska.pdf'),
+(6, 'MOTIVATION', 'Motivation_Ivana_Mitrevska.pdf'),
+
+(7, 'CV', 'CV_Bojan_Spasov.pdf'),
+(7, 'MOTIVATION', 'Motivation_Bojan_Spasov.pdf'),
+
+(8, 'CV', 'CV_Elena_Georgieva.pdf'),
+(8, 'MOTIVATION', 'Motivation_Elena_Georgieva.pdf'),
+
+(9, 'CV', 'CV_Martin_Dimitrov.pdf'),
+(9, 'MOTIVATION', 'Motivation_Martin_Dimitrov.pdf'),
+
+(10, 'CV', 'CV_Sara_Naceva.pdf'),
+(10, 'MOTIVATION', 'Motivation_Sara_Naceva.pdf'),
+
+(11, 'CV', 'CV_Nikola_Stankov.pdf'),
+(11, 'MOTIVATION', 'Motivation_Nikola_Stankov.pdf'),
+
+(12, 'CV', 'CV_Teodora_Velkova.pdf'),
+(12, 'MOTIVATION', 'Motivation_Teodora_Velkova.pdf');
+
 
 INSERT INTO skill (name) VALUES
 ('SQL'), ('Java'), ('Spring'), ('React'), ('Machine Learning');

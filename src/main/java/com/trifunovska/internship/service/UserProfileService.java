@@ -27,8 +27,8 @@ public class UserProfileService {
         dto.setLastName(person.getLastName());
         dto.setEnabled(account.getEnabled());
 
-        if (person.getContactInformation() != null)
-            dto.setEmail(person.getContactInformation().getEmail());
+        dto.setEmail(person.getContactInformation().getEmail());
+        dto.setRole(String.valueOf(account.getRole()));
 
         if (account.getRole().equals(Role.STUDENT)) {
             Student student = studentService.findByPersonId(person.getId());

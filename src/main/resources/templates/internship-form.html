@@ -202,6 +202,8 @@
           method="post"
           enctype="multipart/form-data">
 
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
       <div class="file-grid">
         <div class="file-input-wrapper">
           <label>CV (PDF):</label>

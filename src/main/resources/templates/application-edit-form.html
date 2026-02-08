@@ -111,6 +111,36 @@
       padding: 0;
       text-decoration: none;
     }
+
+    .documents {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .document-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .document-row:last-child {
+      border-bottom: none;
+    }
+
+    .doc-type {
+      min-width: 110px;
+      font-weight: 600;
+      color: #3f51b5;
+    }
+
+    .doc-name {
+      color: #333;
+      word-break: break-all;
+    }
   </style>
 
 </head>
@@ -147,6 +177,22 @@
     <strong>Internship:</strong>
     <span th:text="${internship.title}"></span>
   </p>
+
+  <div class="section">
+    <span class="label">Submitted Documents</span>
+
+    <div th:if="${#lists.isEmpty(documents)}">
+      <em>No documents submitted.</em>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(documents)}" class="documents">
+      <div class="document-row" th:each="document : ${documents}">
+        <span class="doc-type" th:text="${document.type}"></span>
+        <span class="doc-name" th:text="${document.filePath}"></span>
+      </div>
+    </div>
+
+  </div>
 
   <form th:action="@{/company-mentor/supervise/edit}"
         th:object="${application}"
