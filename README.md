@@ -1,6 +1,6 @@
 # Internship Management System
 
-A Spring Boot application for managing internships, student applications, and role-based workflows in an academic–industry environment.
+A system for managing internships, student applications, and role-based workflows in an academic–industry environment.
 
 The system is built using Spring Boot, Spring Security, Thymeleaf, and PostgreSQL with strict role-based access control (RBAC).
 
