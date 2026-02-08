@@ -13,7 +13,7 @@ public interface ApplicationDocumentRepository extends JpaRepository<Application
 
     @Query(nativeQuery = true,
             value = """
-                    SELECT ad.*
+                    SELECT *
                     FROM application_document 
 		            WHERE application_id = :application_id
     """)
