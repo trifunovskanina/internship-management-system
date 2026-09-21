@@ -16,11 +16,12 @@ The application validates the schema at startup and enforces business rules and 
 
 ## Technology Stack
 
-- **Backend**: Spring Boot, Spring MVC, Spring Data JPA
-- **Security**: Spring Security with custom authentication and role-based access control (RBAC)
-- **Frontend**: Thymeleaf with minimal JavaScript
-- **Database**: PostgreSQL
-- **Deployment**: Docker & Docker Compose
+[![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white)](https://www.java.com/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?logo=springsecurity&logoColor=white)](https://spring.io/projects/spring-security)
+[![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?logo=thymeleaf&logoColor=white)](https://www.thymeleaf.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 
 ---
 
