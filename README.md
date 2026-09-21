@@ -115,18 +115,3 @@ These accounts are intended for local development and demonstration only.
 ```
 docker compose up --build
 ```
-
----
-
-## Demonstration
-
-### Student Role
-<img src="screenshots/1.png" width="600"/>
-<img src="screenshots/2.png" width="600"/>
-
-### Mentor Role
-<img src="screenshots/3.png" width="600"/>
-<img src="screenshots/4.png" width="600"/>
-
-### Admin Role
-<img src="screenshots/5.png" width="600"/>
