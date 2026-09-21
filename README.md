@@ -120,13 +120,13 @@ docker compose up --build
 
 ## Demonstration
 
-### <p align="center">Student Role</p>
+### Student Role
 <img src="screenshots/1.png" width="600"/>
 <img src="screenshots/2.png" width="600"/>
 
-### <p align="center">Mentor Role</p>
+### Mentor Role
 <img src="screenshots/3.png" width="600"/>
 <img src="screenshots/4.png" width="600"/>
 
-### <p align="center">Admin Role</p>
+### Admin Role
 <img src="screenshots/5.png" width="600"/>
