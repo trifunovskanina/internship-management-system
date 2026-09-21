@@ -6,14 +6,6 @@ The system is built using Spring Boot, Spring Security, Thymeleaf, and PostgreSQ
 
 ---
 
-## Architecture Overview
-
-The underlying database schema is designed and maintained separately in the [internship-management-database](https://github.com/trifunovskanina/internship-management-database) repository.
-
-The application validates the schema at startup and enforces business rules and access control on top of it.
-
----
-
 ## Technology Stack
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white)](https://www.java.com/)
@@ -22,6 +14,54 @@ The application validates the schema at startup and enforces business rules and 
 [![Thymeleaf](https://img.shields.io/badge/Thymeleaf-005F0F?logo=thymeleaf&logoColor=white)](https://www.thymeleaf.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+
+---
+
+## Architecture Overview
+
+The underlying database schema is designed and maintained separately in the [internship-management-database](https://github.com/trifunovskanina/internship-management-database) repository.
+
+The application validates the schema at startup and enforces business rules and access control on top of it.
+
+---
+
+## Project Structure
+
+```text
+internship-management-system/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/trifunovska/internship/
+│   │   │   ├── config/             
+│   │   │   ├── dto/                 
+│   │   │   ├── model/               
+│   │   │   ├── repository/       
+│   │   │   ├── service/             
+│   │   │   └── web/                
+│   │   │
+│   │   └── resources/
+│   │       ├── templates/            
+│   │       │   └── fragments/        
+│   │       └── application.properties
+│   │
+│   └── test/                       
+│
+├── database/
+│   ├── diagrams/                   
+│   └── sql/
+│       ├── init/                     
+│       ├── dynamic/                 
+│       └── reports/                  
+│
+├── Dockerfile                        
+├── docker-compose.yml              
+├── pom.xml                           
+├── mvnw                            
+├── mvnw.cmd
+├── .gitignore
+└── README.md
+```
 
 ---
 
