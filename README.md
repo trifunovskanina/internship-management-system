@@ -111,15 +111,6 @@ These accounts are intended for local development and demonstration only.
 
 ---
 
-## Demonstration
-
-<img src="screenshots/1.png" width="600"/>
-<img src="screenshots/2.png" width="600"/>
-<img src="screenshots/3.png" width="600"/>
-<img src="screenshots/4.png" width="600"/>
-
----
-
 ## Running the Project
 ```
 docker compose up --build
