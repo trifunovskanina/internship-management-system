@@ -98,19 +98,6 @@ Authorization is always enforced server-side and is never inferred from UI navig
 
 ---
 
-## Demo Accounts
-
-The application includes predefined demo users for evaluation and testing purposes.
-These accounts are intended for local development and demonstration only.
-
-| Role | Username | Password |
-|------|----------|----------|
-| Student | student | student |
-| Company Mentor | mentor | mentor |
-| Admin | admin | admin |
-
----
-
 ## User Interface: Student Dashboard
 
 The student can browse all open internships and apply for each by attaching required documents. They cannot apply to the same internship twice.
@@ -132,6 +119,19 @@ The company mentor can view and edit the application status only for internships
 The administrator can **activate**/**deactivate** user accounts and change user roles. Accounts with `ADMIN` role are protected from these modifications.
 
 <img src="screenshots/admin-dashboard.png" width="600"/>
+
+---
+
+## Demo Accounts
+
+The application includes predefined demo users for evaluation and testing purposes.
+These accounts are intended for local development and demonstration only.
+
+| Role | Username | Password |
+|------|----------|----------|
+| Student | student | student |
+| Company Mentor | mentor | mentor |
+| Admin | admin | admin |
 
 ---
 
