@@ -1,228 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-  <meta charset="UTF-8">
-  <title>Apply for Internship</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f5f7fb;
-      margin: 0;
-    }
-
-    .container {
-      padding: 40px 60px;
-      display: flex;
-      flex-direction: column;
-      align-items: start;
-      justify-content: start;
-    }
-
-    .navbar {
-      background-color: #3f51b5;
-      padding: 16px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #fff;
-    }
-
-    .navbar .brand {
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .navbar a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 24px;
-      font-weight: 500;
-    }
-
-    .card {
-      background: white;
-      max-width: 500px;
-      margin: 5% auto auto auto;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    .section {
-      margin-bottom: 20px;
-    }
-
-    .label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    button {
-      background-color: #3f51b5;
-      color: white;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    button:hover {
-      background-color: #2f3fa3;
-    }
-
-    .cancel {
-      margin-left: 15px;
-      text-decoration: none;
-      color: #555;
-    }
-
-    select {
-      width: 100%;
-      padding: 5px;
-      margin: 10px 0;
-      border: 2px solid #e0e0e0;
-      border-radius: 6px;
-      font-size: 15px;
-      color: #333;
-      background-color: #fff;
-      cursor: pointer;
-      transition: border-color 0.3s ease;
-    }
-
-    .navbar .nav-link-button {
-      background: none;
-      border: none;
-      color: #fff;
-      margin-left: 24px;
-      font-weight: 500;
-      font-size: 16px;
-      font-family: inherit;
-      cursor: pointer;
-      padding: 0;
-      text-decoration: none;
-    }
-
-    div.section {
-      margin-top: 15px;
-      margin-bottom: 20px;
-    }
-
-    .documents {
-      border: 1px solid #e0e0e0;
-      border-radius: 6px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-
-    .document-row {
-      display: flex;
-      align-items: center;
-      padding: 10px 12px;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-    }
-
-    .document-row:last-child {
-      border-bottom: none;
-    }
-
-    .doc-type {
-      min-width: 110px;
-      font-weight: 600;
-      color: #3f51b5;
-    }
-
-    .doc-name {
-      color: #333;
-      word-break: break-all;
-    }
-  </style>
-
-</head>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head :: head('Apply for Internship')}"></head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<div class="card container">
+<div class="card card-form">
 
-  <h2>Edit Application Status</h2>
+    <h2>Edit Application Status</h2>
 
-  <p>
-    <strong>Student:</strong>
-    <span th:text="${person.firstName}"></span>
-    <span th:text="${person.lastName}"></span>
-  </p>
+    <p>
+        <strong>Student:</strong>
+        <span th:text="${person.firstName}"></span>
+        <span th:text="${person.lastName}"></span>
+    </p>
 
-  <p>
-    <strong>Faculty:</strong>
-    <span th:text="${program.faculty.name}"/>
-  </p>
+    <p>
+        <strong>Faculty:</strong>
+        <span th:text="${program.faculty.name}"></span>
+    </p>
 
-  <p>
-    <strong>Study Program:</strong>
-    <span th:text="${program.name}"/>
-  </p>
+    <p>
+        <strong>Study Program:</strong>
+        <span th:text="${program.name}"></span>
+    </p>
 
-  <p>
-    <strong>Company:</strong>
-    <span th:text="${internship.company.name}"/>
-  </p>
+    <p>
+        <strong>Company:</strong>
+        <span th:text="${internship.company.name}"></span>
+    </p>
 
-  <p>
-    <strong>Internship:</strong>
-    <span th:text="${internship.title}"></span>
-  </p>
+    <p>
+        <strong>Internship:</strong>
+        <span th:text="${internship.title}"></span>
+    </p>
 
-  <div class="section">
-    <span class="label">Submitted Documents</span>
+    <div class="section">
+        <span class="label">Submitted Documents</span>
 
-    <div th:if="${#lists.isEmpty(documents)}">
-      <em>No documents submitted.</em>
+        <div th:if="${#lists.isEmpty(documents)}">
+            <em>No documents submitted.</em>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(documents)}" class="documents">
+            <div class="document-row" th:each="document : ${documents}">
+                <span class="doc-type" th:text="${document.type}"></span>
+                <span class="doc-name" th:text="${document.filePath}"></span>
+            </div>
+        </div>
     </div>
 
-    <div th:if="${!#lists.isEmpty(documents)}" class="documents">
-      <div class="document-row" th:each="document : ${documents}">
-        <span class="doc-type" th:text="${document.type}"></span>
-        <span class="doc-name" th:text="${document.filePath}"></span>
-      </div>
-    </div>
+    <form th:action="@{/company-mentor/supervise/edit}"
+          th:object="${application}"
+          method="post">
+        <input type="hidden" name="applicationId" th:field="*{id}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-  </div>
+        <label class="label" for="status">Status</label>
+        <select class="form-select" id="status" name="status">
+            <option th:each="status : ${statuses}"
+                    th:value="${status.name()}"
+                    th:text="${status.name()}"
+                    th:selected="${status == application.status}"></option>
+        </select>
 
-  <form th:action="@{/company-mentor/supervise/edit}"
-        th:object="${application}"
-        method="post">
-
-    <input type="hidden" name="applicationId" th:field="*{id}"/>
-
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-
-    <label><strong>Status</strong></label>
-    <select name="status">
-      <option th:each="status : ${statuses}"
-              th:value="${status.name()}"
-              th:text="${status.name()}"
-              th:selected="${status == application.status}">
-      </option>
-    </select>
-
-    <br><br>
-
-    <button type="submit">Save</button>
-    <a class="cancel" th:href="@{/company-mentor/internships/{id}/applications(id=${internship.id})}">
-      Cancel
-    </a>
-  </form>
+        <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        <a class="cancel" th:href="@{/company-mentor/internships/{id}/applications(id=${internship.id})}">Cancel</a>
+    </form>
 
 </div>
 

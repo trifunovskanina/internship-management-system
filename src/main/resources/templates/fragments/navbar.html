@@ -8,7 +8,7 @@
         <a sec:authorize="hasRole('COMPANY_MENTOR')" href="/company-mentor/supervise">Current Mentoring</a>
         <a sec:authorize="hasRole('STUDENT')" href="/student/applications">My Applications</a>
 
-        <form th:action="@{/logout}" method="post" style="display:inline;">
+        <form th:action="@{/logout}" method="post">
             <button type="submit" class="nav-link-button">Logout</button>
         </form>
     </div>
