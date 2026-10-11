@@ -100,7 +100,7 @@ Authorization is always enforced server-side and is never inferred from UI navig
 
 ## User Interface: Student Dashboard
 
-The student can browse all open internships and apply for each by attaching required documents. They cannot apply to the same internship twice.
+The student can browse open internships and apply for each by attaching required documents. They cannot apply to the same internship twice.
 
 <img src="screenshots/student-dashboard.png" width="600"/>
 
