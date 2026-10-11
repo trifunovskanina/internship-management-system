@@ -112,7 +112,7 @@ Students can browse internships and apply for each by attaching required documen
 
 ## Company Mentor Dashboard
 
-Company mentors can review student applications and update their statuses only for internships they are **currently mentoring**. After clicking `Edit`, they can view the attached documents before changing an application's status.
+Company mentors can review student applications and update their statuses only for internships they are **currently mentoring**. After clicking `Edit`, they can see which documents have been attached, before changing the status of the application.
 
 <img src="screenshots/mentor-dashboard.png" width="600"/>
 
