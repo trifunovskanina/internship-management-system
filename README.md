@@ -35,12 +35,16 @@ internship-management-system/
 │   │   ├── java/com/trifunovska/internship/
 │   │   │   ├── config/             
 │   │   │   ├── dto/                 
-│   │   │   ├── model/               
+│   │   │   ├── model/   
+│   │   │   │   └── enums/
 │   │   │   ├── repository/       
 │   │   │   ├── service/             
 │   │   │   └── web/                
 │   │   │
 │   │   └── resources/
+│   │       ├── static/
+│   │       │   ├── css/               
+│   │       │   └── js/
 │   │       ├── templates/            
 │   │       │   └── fragments/        
 │   │       └── application.properties
@@ -98,25 +102,25 @@ Authorization is always enforced server-side and is never inferred from UI navig
 
 ---
 
-## User Interface: Student Dashboard
+## Student Dashboard
 
-The student can browse open internships and apply for each by attaching required documents. They cannot apply to the same internship twice.
+Students can browse internships and apply for each by attaching required documents. They cannot apply to the same internship twice.
 
 <img src="screenshots/student-dashboard.png" width="600"/>
 
 ---
 
-## User Interface: Company Mentor Dashboard
+## Company Mentor Dashboard
 
-The company mentor can view and edit the application status only for internships he is **currently mentoring**. After clicking `Edit`, they can see which documents have been attached, before changing the status of the application.
+Company mentors can review student applications and update their statuses only for internships they are **currently mentoring**. After clicking `Edit`, they can view the attached documents before changing an application's status.
 
 <img src="screenshots/mentor-dashboard.png" width="600"/>
 
 ---
 
-## User Interface: Administration Dashboard
+## Administration Dashboard
 
-The administrator can **activate**/**deactivate** user accounts and **manage user roles**. Accounts with `ADMIN` role are protected from these modifications.
+Administrators can **activate**/**deactivate** user accounts and **manage user roles**. Accounts with `ADMIN` role are protected from these modifications.
 
 <img src="screenshots/admin-dashboard.png" width="600"/>
 
