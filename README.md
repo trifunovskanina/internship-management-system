@@ -111,6 +111,30 @@ These accounts are intended for local development and demonstration only.
 
 ---
 
+## User Interface: Student Dashboard
+
+The student can browse all open internships and apply for each by attaching required documents. They cannot apply to the same internship twice.
+
+<img src="screenshots/student-dashboard.png" width="600"/>
+
+---
+
+## User Interface: Company Mentor Dashboard
+
+The company mentor can view and edit the application status only for internships he is **currently mentoring**. After clicking `Edit`, they can see which documents have been attached, before changing the status of the application.
+
+<img src="screenshots/mentor-dashboard.png" width="600"/>
+
+---
+
+## User Interface: Administration Dashboard
+
+The administrator can **activate**/**deactivate** user accounts and change user roles. Accounts with `ADMIN` role are protected from these modifications.
+
+<img src="screenshots/admin-dashboard.png" width="600"/>
+
+---
+
 ## Running the Project
 ```
 docker compose up --build
