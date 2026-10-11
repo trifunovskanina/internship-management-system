@@ -116,7 +116,7 @@ The company mentor can view and edit the application status only for internships
 
 ## User Interface: Administration Dashboard
 
-The administrator can **activate**/**deactivate** user accounts and change user roles. Accounts with `ADMIN` role are protected from these modifications.
+The administrator can **activate**/**deactivate** user accounts and **manage user roles**. Accounts with `ADMIN` role are protected from these modifications.
 
 <img src="screenshots/admin-dashboard.png" width="600"/>
 
